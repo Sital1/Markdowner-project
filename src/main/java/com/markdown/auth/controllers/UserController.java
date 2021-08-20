@@ -1,0 +1,51 @@
+package com.markdown.auth.controllers;
+
+import com.google.common.base.Preconditions;
+import com.markdown.auth.dtos.UserInfoDTO;
+import com.markdown.auth.dtos.UserLoginDTO;
+import com.markdown.auth.services.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import static com.google.common.base.Preconditions.*;
+
+@RestController
+@RequestMapping("/user")
+@Slf4j
+public class UserController {
+
+    // using Autowired
+
+    @Autowired
+    UserService userService;
+
+    // create user
+    @PostMapping("/create")
+    public UserInfoDTO createUser(@RequestBody UserInfoDTO userInfoDTO) {
+        // check for nullpointer exceptions
+        checkNotNull(userInfoDTO);
+
+        userService.createUser(userInfoDTO);
+
+        return userInfoDTO;
+    }
+
+    @GetMapping("/info/{userId}")
+    public UserInfoDTO getUserInfo(@PathVariable String userId) {
+        return userService.getUserInfo(userId);
+    }
+
+
+    //login user
+    @PostMapping("/login")
+    public UserInfoDTO loginUser(@RequestBody UserLoginDTO userLoginDTO) {
+        checkNotNull(userLoginDTO);
+        return userService.loginUser(userLoginDTO);
+    }
+
+    // delete a user
+
+    // modify the user
+
+}

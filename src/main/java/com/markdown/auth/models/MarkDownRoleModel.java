@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Data
-@Document(collation = "roles")
+@Document(collection = "roles")
 @EqualsAndHashCode(callSuper = true)
 public class MarkDownRoleModel extends GenericModel{
     private String role;

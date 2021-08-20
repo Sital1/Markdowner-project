@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Data
-@Document(collation = "users")
+@Document(collection = "users")
 @EqualsAndHashCode(callSuper = true)
 public class MarkDownUserModel extends GenericModel{
 
@@ -26,7 +26,7 @@ public class MarkDownUserModel extends GenericModel{
 
     private String jwtToken;
     private String password;
-    private List<MarkDownRoleModel> roles;
+    private List<String> roles;
 
     public MarkDownUserModel() {
         super();

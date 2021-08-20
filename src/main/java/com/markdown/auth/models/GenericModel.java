@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.domain.Persistable;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.UUID;
 
 import static java.util.Objects.isNull;
@@ -19,10 +20,10 @@ public class GenericModel implements Serializable, Persistable<String> {
     private String id;
 
     @CreatedDate
-    private String createdAt;
+    private Date createdAt;
 
     @LastModifiedDate
-    private String updatedAt;
+    private Date updatedAt;
 
     @Override
     public boolean isNew() {
