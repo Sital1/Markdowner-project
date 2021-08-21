@@ -48,6 +48,8 @@ public class UserServiceImpl implements UserService {
 
         MarkDownUserModel markDownUserModel = modelMapper.map(userInfoDTO, MarkDownUserModel.class);
 
+        System.out.println(">>>> IN USer Service Markdown model"+ markDownUserModel.getRoles());
+
         // need to hash the password before we save it
         markDownUserModel.setPassword(bCryptPasswordEncoder.encode(userInfoDTO.getPassword()));
 
@@ -78,7 +80,9 @@ public class UserServiceImpl implements UserService {
         //update to userInfoDTO when the markdown model has been saved
         modelMapper.map(markDownUserModel, userInfoDTO);
 
-        System.out.println(">>>IN user Service After Mapping: "+ userInfoDTO.getRoles() );
+        System.out.println(">>>> IN USer Service Markdown model"+ markDownUserModel.getRoles());
+
+        System.out.println(">>>IN user Service After Mapping before assigning: "+ userInfoDTO.getRoles() );
 
     }
 

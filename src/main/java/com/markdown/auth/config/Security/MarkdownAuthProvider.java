@@ -55,13 +55,10 @@ public class MarkdownAuthProvider  extends AbstractUserDetailsAuthenticationProv
             try
             {
                 tokenService.validateToken(token);
-                System.out.println("daasd");
 
             } catch (InvalidTokenException e) {
                 markDownUserModel.setJwtToken(null);
                 userDAO.save(markDownUserModel);
-
-                System.out.println("returning null");
                 return null;
             }
 

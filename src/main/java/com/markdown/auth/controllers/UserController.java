@@ -23,6 +23,7 @@ public class UserController {
 
     // create user
     @PostMapping("/create")
+    @PreAuthorize("hasAnyRole('ANONYMOUS','ADMIN')")
     public UserInfoDTO createUser(@RequestBody UserInfoDTO userInfoDTO) {
         // check for nullpointer exceptions
         checkNotNull(userInfoDTO);
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/info/{userId}")
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')") // No prefix ROLE_
     public UserInfoDTO getUserInfo(@PathVariable String userId) {
         return userService.getUserInfo(userId);
     }
@@ -43,6 +44,7 @@ public class UserController {
 
     //login user
     @PostMapping("/login")
+    @PreAuthorize("hasAnyRole('ANONYMOUS')")
     public UserInfoDTO loginUser(@RequestBody UserLoginDTO userLoginDTO) {
         checkNotNull(userLoginDTO);
         return userService.loginUser(userLoginDTO);
