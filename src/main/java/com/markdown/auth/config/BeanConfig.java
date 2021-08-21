@@ -1,5 +1,6 @@
 package com.markdown.auth.config;
 
+import com.markdown.auth.config.Security.MarkdownAuthProvider;
 import com.markdown.auth.dtos.UserInfoDTO;
 import com.markdown.auth.models.MarkDownUserModel;
 import org.modelmapper.ModelMapper;
@@ -27,6 +28,12 @@ public class BeanConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder()
     {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public MarkdownAuthProvider markdownAuthProvider()
+    {
+        return new MarkdownAuthProvider();
     }
 
 }

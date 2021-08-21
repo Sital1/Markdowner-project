@@ -6,6 +6,7 @@ import com.markdown.auth.dtos.UserLoginDTO;
 import com.markdown.auth.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static com.google.common.base.Preconditions.*;
@@ -28,10 +29,13 @@ public class UserController {
 
         userService.createUser(userInfoDTO);
 
+        System.out.println(">>>IN user controller: "+ userInfoDTO.getRoles() );
+
         return userInfoDTO;
     }
 
     @GetMapping("/info/{userId}")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public UserInfoDTO getUserInfo(@PathVariable String userId) {
         return userService.getUserInfo(userId);
     }

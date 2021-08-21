@@ -52,6 +52,8 @@ public class UserServiceImpl implements UserService {
         markDownUserModel.setPassword(bCryptPasswordEncoder.encode(userInfoDTO.getPassword()));
 
 
+        System.out.println(">>>IN user Service: "+ userInfoDTO.getRoles() );
+
         //assign default role when the user is created
         markDownUserModel.setRoles(
                 roleDAO.findAll().stream()
@@ -60,6 +62,8 @@ public class UserServiceImpl implements UserService {
                         .collect(Collectors.toList())
         );
 
+
+        System.out.println(">>>IN user Service After Assigning: "+ userInfoDTO.getRoles() );
 
         //generate a new token foe the user
         tokenService.generateToken(markDownUserModel);
@@ -73,6 +77,8 @@ public class UserServiceImpl implements UserService {
 
         //update to userInfoDTO when the markdown model has been saved
         modelMapper.map(markDownUserModel, userInfoDTO);
+
+        System.out.println(">>>IN user Service After Mapping: "+ userInfoDTO.getRoles() );
 
     }
 
