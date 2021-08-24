@@ -13,4 +13,5 @@ public interface RoleDAO extends MongoRepository<MarkDownRoleModel, String> {
 
     Optional<MarkDownRoleModel> findById(String id);
 
+    Optional<MarkDownRoleModel>findByRole(String role);
 }

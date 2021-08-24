@@ -48,13 +48,8 @@ public class UserServiceImpl implements UserService {
 
         MarkDownUserModel markDownUserModel = modelMapper.map(userInfoDTO, MarkDownUserModel.class);
 
-        System.out.println(">>>> IN USer Service Markdown model"+ markDownUserModel.getRoles());
-
         // need to hash the password before we save it
         markDownUserModel.setPassword(bCryptPasswordEncoder.encode(userInfoDTO.getPassword()));
-
-
-        System.out.println(">>>IN user Service: "+ userInfoDTO.getRoles() );
 
         //assign default role when the user is created
         markDownUserModel.setRoles(
@@ -65,14 +60,18 @@ public class UserServiceImpl implements UserService {
         );
 
 
-        System.out.println(">>>IN user Service After Assigning: "+ userInfoDTO.getRoles() );
+        System.out.println(">>>IN user Service After Assigning roles : "+ userInfoDTO.getRoles() );
 
         //generate a new token foe the user
         tokenService.generateToken(markDownUserModel);
 
         // save markDownUserModel(Because there are other fields we need to instantiate)
 
+        System.out.println(">>>IN user Service before saving markdown model : "+ userInfoDTO.getRoles() );
+
         userDAO.save(markDownUserModel);
+
+       // System.out.println(">>>> IN USer Service  after saving Markdown model"+ markDownUserModel.getRoles());
 
         // set the pw do empty
         userInfoDTO.setPassword("");
@@ -80,9 +79,9 @@ public class UserServiceImpl implements UserService {
         //update to userInfoDTO when the markdown model has been saved
         modelMapper.map(markDownUserModel, userInfoDTO);
 
-        System.out.println(">>>> IN USer Service Markdown model"+ markDownUserModel.getRoles());
 
-        System.out.println(">>>IN user Service After Mapping before assigning: "+ userInfoDTO.getRoles() );
+
+        System.out.println(">>>IN user Service After saving markdown model and mapping to DTO: "+ userInfoDTO.getRoles() );
 
     }
 

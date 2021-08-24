@@ -63,7 +63,8 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("error",failed.getCause());
         jsonObject.put("errorMessage",failed.getMessage());
-
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
         response.getWriter().print(jsonObject);
         response.getWriter().flush();
 
