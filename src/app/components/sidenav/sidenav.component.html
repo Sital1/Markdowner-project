@@ -1,0 +1,19 @@
+<mat-nav-list>
+    <div class="logo py-4">
+        <img src="../../assets/images/logo.png" alt="MarkdownLogo">
+    </div>
+    <mat-divider></mat-divider>
+    
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+        <mat-icon>home</mat-icon>Home</a>
+    <a mat-list-item routerLink="/mydocs" routerLinkActive="list-item-active"
+     *ngIf="loggedIn">
+        <mat-icon>description</mat-icon> My Docs</a>
+    <a mat-list-item routerLink="/login"  *ngIf="!loggedIn">
+        <mat-icon>login</mat-icon>Login</a>
+     <a mat-list-item routerLink="/register"  *ngIf="!loggedIn">
+            <mat-icon>app_registration</mat-icon>Register</a>
+     <a mat-list-item (click)="logOutClick($event)" *ngIf="loggedIn">
+        <mat-icon>logout</mat-icon>Logout</a>
+
+</mat-nav-list>

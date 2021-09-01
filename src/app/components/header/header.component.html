@@ -1,0 +1,57 @@
+<!-- <div style="height: 100vh;">
+    <mat-toolbar color="primary">
+      <span>Responsive Navigation</span>
+  
+      <span class="example-spacer"></span>
+  
+      <div fxShow="true" fxHide.lt-md="true"> -->
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <!-- <a routerLink="/home" mat-button>Home</a>
+        <a routerLink="/mydocs" mat-button *ngIf="loggedIn">My Docs</a>
+        <a routerLink="/login" mat-button *ngIf="!loggedIn">Login</a>
+        <a (click)="logOutClick($event)" mat-button *ngIf="loggedIn">Logout</a>
+
+      </div>
+  
+      <div fxShow="true" fxHide.gt-sm="true">
+        <a href="#" (click)="sidenav.toggle()">Show Side Menu</a>
+      </div>
+    </mat-toolbar> -->
+  
+    <!-- <mat-sidenav-container fxFlexFill class="example-container">
+      <mat-sidenav #sidenav fxLayout="column">
+        <div fxLayout="column">
+            <a routerLink="/home" mat-button>Home</a>
+            <a routerLink="/mydocs" mat-button *ngIf="loggedIn">My Docs</a>
+            <a routerLink="/login" mat-button *ngIf="!loggedIn">Login</a>
+            <a (click)="logOutClick($event)" mat-button *ngIf="loggedIn">Logout</a>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill></mat-sidenav-content>
+    </mat-sidenav-container>
+  </div> -->
+
+<mat-toolbar>
+  <mat-toolbar-row class="justify-content-between">
+    <button mat-icon-button (click)="toggleSideBar()"><mat-icon>menu</mat-icon></button>
+
+    <div class="row" mr-2 ml-auto>
+      <ul *ngIf="loggedIn">
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
+            <mat-icon class="user-image">account_circle</mat-icon>
+            {{username}}
+            <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+          </button>
+         <mat-menu #menu="matMenu">
+           <button (click)="logOutClick($event)"> 
+             <mat-icon>exit_to_app</mat-icon>
+             Logout
+           </button>
+         </mat-menu>
+        </li>
+      </ul>
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>

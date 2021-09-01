@@ -1,0 +1,50 @@
+.logo{
+    text-align: center;
+    padding: 2.6rem 1rem;
+    img{
+        width: 200px;
+        height: 150px;
+    }
+
+}
+
+.mat-icon{
+    vertical-align: center;
+    margin-right: 1rem;
+}
+
+.mat-divider{
+    border-top-width: 2px;
+    border-color: white;
+    margin-bottom: 8px;
+}
+
+.mat-list-item{
+    color: #94a3b8 !important;
+    font-size: 1.5rem;
+    height: 64px !important;
+    margin-bottom: 8px;
+ 
+    ::ng-deep{
+        .mat-list-item-content{
+            border-radius: 5px;
+            margin: 0 8px;
+            &:hover{
+                background: #2c3344 !important;
+            }
+        }
+        
+    }
+}
+
+.list-item-active{
+    color: #f2f5f7;
+    ::ng-deep{
+        .mat-list-item-content{
+            background: #2c3344 !important;
+            &:hover{
+                background: #2c3344 !important;
+            }
+        }
+    }
+}
