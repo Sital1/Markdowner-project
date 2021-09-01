@@ -9,8 +9,7 @@ import { UserModel } from '../models/user-model';
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-
+ 
 
   static USER_INFO = 'USER_INFO'; 
 
@@ -83,6 +82,26 @@ export class AuthenticationService {
 
     return this.userInfoSubject.value;
   }
+
+  registerUser(formValue:any):Observable<UserModel> {
+    
+    const url = 'http://demo5898413.mockable.io/register';
+
+    return this.httpClient.post<UserModel>( url, formValue)
+    .pipe(
+      map(userModel => {
+       // create a cookie with JWT token
+      this.cookieService.set(AuthenticationService.USER_INFO,JSON.stringify(userModel))
+      // notify all the subscriber., use the next method
+       this.userInfoSubject.next(userModel);
+       
+     
+       return userModel;
+      })
+    )
+
+  }
+
 
 
 }
