@@ -41,7 +41,7 @@ public class DocsController {
 
     // fetch own documents
     @GetMapping("/{userId}/all")
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN','ANONYMOUS')")
     public List<DocDTO> fetchUserDocs(@PathVariable String userId,HttpServletRequest httpServletRequest){
 
         String jwtToken = getJwtTokenFromHeader(httpServletRequest);
