@@ -6,6 +6,7 @@ import com.markdown.doc.services.DocService;
 import com.markdown.doc.services.TokenService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -107,5 +108,23 @@ public class DocsController {
 
 
     // delete document
+
+    @DeleteMapping("/{docId}/delete")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity deleteDoc(@PathVariable String docId, HttpServletRequest httpServletRequest) throws UserNotAllowedException {
+
+        String jwtToken = getJwtTokenFromHeader(httpServletRequest);
+
+        String userId = tokenService.getUserId(jwtToken);
+
+        // call the service
+        docService.deleteDocById(docId,userId);
+
+        return ResponseEntity.noContent().build();
+
+    }
+
+
+
 
 }

@@ -111,4 +111,26 @@ public class DocServiceImpl implements DocService {
         }
         throw new NoSuchElementException("No document with id " + docDTO.getId()+" was found");
     }
+
+    @Override
+    public void deleteDocById(String docId, String userId) throws UserNotAllowedException {
+
+        Optional<DocModel> optionalDocModel = docDAO.findById(docId);
+
+        if(optionalDocModel.isPresent()){
+            final DocModel docModel = optionalDocModel.get();
+
+            if(docModel.getUserId().equals(userId)){
+
+                docDAO.deleteById(docId);
+
+                return;
+            }else {
+                throw new UserNotAllowedException("You are not allowed to delete this content");
+            }
+        }
+
+        throw new NoSuchElementException("No document with id "+ docId + "was found");
+
+    }
 }

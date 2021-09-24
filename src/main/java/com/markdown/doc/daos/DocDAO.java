@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface DocDAO extends MongoRepository<DocModel,String> {
     List<DocModel> findAllByUserIdOrderByUpdatedAtDesc(String userId);
+
+    void deleteById(String docId, String userId);
+
 }
