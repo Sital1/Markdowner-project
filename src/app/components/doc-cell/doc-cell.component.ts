@@ -76,9 +76,9 @@ cellClicked(){
 }
 
 
-cellStatusChanged(event:any){
+cellStatusChanged(event: any){
 
-  const status = event.target.change;
+  const status = event.target.checked;
 
   const updatedAtTemp = this.doc.updatedAt;
 

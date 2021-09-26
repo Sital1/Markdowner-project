@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map} from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { UserModel } from '../models/user-model';
 
 @Injectable({
@@ -45,14 +46,8 @@ export class AuthenticationService {
 
      }
 
-
-  jwtToken(){
-    return JSON.parse(this.cookieService.get(AuthenticationService.USER_INFO)).jwtToken;
-
-  }
-
   login(username:string,password:string):Observable<UserModel> {
-    const url = 'http://demo5898413.mockable.io/login';
+    const url = `${environment.ENDPOINTS.USER_LOGIN}`;
     this.setLoggedIn(true);
    return this.httpClient.post<UserModel>( url, {username,password})
    .pipe(
@@ -100,10 +95,7 @@ export class AuthenticationService {
   }
 
   registerUser(formValue:any):Observable<UserModel> {
-    
-    //const url = 'http://demo5898413.mockable.io/register';
-
-    const url = 'http://localhost:9999/user/create'
+    const url = `${environment.ENDPOINTS.USER_CREATION}`
 
     return this.httpClient.post<UserModel>( url, formValue)
     .pipe(

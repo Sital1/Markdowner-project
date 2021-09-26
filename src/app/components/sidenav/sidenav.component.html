@@ -4,6 +4,9 @@
     </div>
     <mat-divider></mat-divider>
     
+    <a mat-list-item routerLink="/doc/new" routerLinkActive="list-item-active"
+     *ngIf="loggedIn"> <mat-icon>add</mat-icon>New Doc</a>
+
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
         <mat-icon>home</mat-icon>Home</a>
     <a mat-list-item routerLink="/mydocs" routerLinkActive="list-item-active"
