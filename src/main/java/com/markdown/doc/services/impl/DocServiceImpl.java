@@ -86,7 +86,7 @@ public class DocServiceImpl implements DocService {
     @Override
     public List<DocDTO> fetchTopRecentDocs() {
        // use a paegable request
-        Page<DocModel> updatedAt = docDAO.findAll(PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "updatedAt")));
+        Page<DocModel> updatedAt = docDAO.findByAvailable(true,PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "updatedAt")));
         return  updatedAt.stream()
                 .map(docModel -> modelMapper.map(docModel,DocDTO.class))
                 .collect(Collectors.toList());

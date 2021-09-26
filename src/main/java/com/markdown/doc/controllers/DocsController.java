@@ -41,7 +41,7 @@ public class DocsController {
     }
 
     // fetch own documents
-    @GetMapping("/{userId}/all")
+    @GetMapping("all/{userId}")
     @PreAuthorize("hasAnyRole('USER','ADMIN','ANONYMOUS')")
     public List<DocDTO> fetchUserDocs(@PathVariable String userId,HttpServletRequest httpServletRequest){
 
@@ -56,7 +56,7 @@ public class DocsController {
 
     // fetch public documents
 
-    @GetMapping("/{docId}")
+    @GetMapping("/fetch/{docId}")
     @PreAuthorize("hasAnyRole('USER','ADMIN','ANONYMOUS')")
     public DocDTO fetchDocument(@PathVariable String docId,HttpServletRequest httpServletRequest){
 
@@ -109,7 +109,7 @@ public class DocsController {
 
     // delete document
 
-    @DeleteMapping("/{docId}/delete")
+    @DeleteMapping("//delete/{docId}")
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity deleteDoc(@PathVariable String docId, HttpServletRequest httpServletRequest) throws UserNotAllowedException {
 
