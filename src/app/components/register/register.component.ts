@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        alert(`Registration failed ${error.message}`)
+        alert(`Registration failed ${error.error}`)
       }
     )
       this.authenticationService.setLoggedIn(true);

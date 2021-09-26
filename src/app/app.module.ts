@@ -67,10 +67,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { DocCellComponent } from './components/doc-cell/doc-cell.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
+import { MydocsComponent } from './components/mydocs/mydocs.component';
+import { DocComponent } from './components/doc/doc.component';
 
 @NgModule({
   declarations: [
@@ -82,13 +84,15 @@ import { CookieService } from 'ngx-cookie-service';
     DocCellComponent,
     RegisterComponent,
     LoginComponent,
+    MydocsComponent,
+    DocComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MarkdownModule,
+    MarkdownModule.forRoot(),
     HttpClientModule,
     // * MATERIAL IMPORTS
     MatSidenavModule,
@@ -97,9 +101,10 @@ import { CookieService } from 'ngx-cookie-service';
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    FormsModule
    
   ],
-  providers: [CookieService],
+  providers: [CookieService,MarkdownModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

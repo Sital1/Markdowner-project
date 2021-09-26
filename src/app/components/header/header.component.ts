@@ -16,19 +16,19 @@ export class HeaderComponent implements OnInit {
   username : string = '';
 
   
-  loggedIn = false;
+  loggedIn = this.authenticationService.currentLoginValue;
 
   constructor(private authenticationService:AuthenticationService,
     private router:Router) { 
 
-    this.authenticationService.currentUser$.subscribe(
-      userModel => {
-        if(Object.keys(userModel).length !== 0){
-          this.loggedIn = true;
-          this.username = userModel.username
-        }
-      }
-    )
+    // this.authenticationService.currentUser$.subscribe(
+    //   userModel => {
+    //     if(Object.keys(userModel).length !== 0){
+    //       this.loggedIn = true;
+    //       this.username = userModel.username
+    //     }
+    //   }
+    // )
 
   }
 

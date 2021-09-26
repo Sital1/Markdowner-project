@@ -1,1 +1,21 @@
-<p>mydocs works!</p>
+
+
+
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">My Docs</div>
+    <div class="page__content shadow p-3 position-relative">
+      <div class="d-flex  p-3 mt-2"></div>
+      <div class="page__content-data position-relative"> 
+        <div *ngFor="let doc of myDocList" class="page__docs">
+            <app-doc-cell [doc]="doc" 
+            id="{{doc.id}}"
+            (docDeleted)="cellDeleted($event)">
+            
+        </app-doc-cell>
+    </div>
+
+
+
+    </div>
+    </div>
+  </div>

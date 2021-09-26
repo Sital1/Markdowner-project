@@ -1,0 +1,43 @@
+.doc-container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+
+
+.text-container{
+    width: 50%;
+    height: 100vh;
+    border-right-width: 2px;
+    border-right-style: solid;
+}
+
+.markdown-container{
+    width: 50%;
+    height: 100vh;
+    border-right-width: 2px;
+    border-right-style: solid;
+    background-color: #e7e4ea;
+}
+
+.save-button{
+    position: absolute;
+    margin-bottom: 0;
+    margin-top: 85vh;
+    margin-left: 48.3%;
+}
+
+.input-md-text{
+    width: 100%;
+    height: 100vh;
+}
+
+.doc-title-container{
+    width: 45%;
+    margin-bottom: 15px;
+}
+
+input{
+    width: 100%;
+    text-align: center;
+}

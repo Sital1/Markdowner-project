@@ -10,20 +10,11 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class SidenavComponent implements OnInit {
 
-
-
-  loggedIn = false;
+  loggedIn = this.authenticationService.currentLoginValue;
 
   constructor(private authenticationService:AuthenticationService,
     private router:Router) { 
-    this.authenticationService.currentUser$.subscribe(
-      userModel => {
-        if(Object.keys(userModel).length !== 0){
-          this.loggedIn = true;
-        }
-      }
-    )
-    console.log(this.loggedIn);
+  
   }
 
   ngOnInit(): void {
@@ -36,7 +27,7 @@ export class SidenavComponent implements OnInit {
     event.preventDefault();
     
     this.authenticationService.logout();
-    this.authenticationService.setLoggedIn(false);
+    
    
     this.router.navigate(['/home']);
     

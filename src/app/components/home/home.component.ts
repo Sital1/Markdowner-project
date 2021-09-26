@@ -11,10 +11,7 @@ export class HomeComponent implements OnInit {
   recentDocs:DocModel[] =[];
 
   constructor() { 
-    this.recentDocs.push(new DocModel());
-    this.recentDocs.push(new DocModel());
-    this.recentDocs.push(new DocModel());
-    this.recentDocs.push(new DocModel());
+
   }
 
   ngOnInit(): void {
