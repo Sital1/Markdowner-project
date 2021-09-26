@@ -4,7 +4,7 @@
       <div class="d-flex  p-3 mt-2">Top 10 docs</div>
       <div class="page__content-data position-relative"> 
           <div *ngFor="let doc of recentDocs" class="page__docs">
-            <app-doc-cell [doc]="doc" > </app-doc-cell>
+            <app-doc-cell [doc]="doc" (availabilityChanged)="reloadRecentDocs()" (docDeleted)="reloadRecentDocs()"> </app-doc-cell>
           </div>
 
     </div>

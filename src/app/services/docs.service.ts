@@ -23,14 +23,9 @@ export class DocsService {
 
 
  
-  deleteDocument(id: string) {
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', `Bearer ${this.authenticationService.jwtToken()}`)
-    }
-    
+  deleteDocument(id: string) { 
     const url = `http://localhost:9998/doc/delete/${id}`;
-    return this.httpClient.delete(url,header);
+    return this.httpClient.delete(url);
 
   }
 
@@ -47,5 +42,10 @@ export class DocsService {
     return this.httpClient.put<DocModel>(url,docModel);
   }
 
+
+  fetchRecentDocuments(): Observable<DocModel[]>{
+    const url = `http://localhost:9998/doc/recent`;
+    return this.httpClient.get<DocModel[]>(url);
+  }
 
 }

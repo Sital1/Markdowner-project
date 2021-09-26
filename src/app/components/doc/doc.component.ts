@@ -48,6 +48,7 @@ export class DocComponent implements OnInit {
       (      data: DocModel) =>{
           this.doc = data;
           this.content = this.doc.content;   
+          this.docTitle=this.doc.title;
           console.log(this.content);
 
       },
@@ -84,7 +85,7 @@ export class DocComponent implements OnInit {
       },
       error => {
 
-        alert(`Doc couldn't be saved:  ${error}`)
+        alert(`Doc couldn't be saved:  ${error.message}`)
 
       }
     )

@@ -10,7 +10,7 @@
 
         <div *ngIf = "currentUserIsOwner()" class="doc-is-public-container">
     
-            <input type="checkbox" [checked]="doc.available">
+            <input type="checkbox" [checked]="doc.available" (change)="cellStatusChanged($event)">
             Public
         </div>
 

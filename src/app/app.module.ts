@@ -68,11 +68,13 @@ import { MatListModule } from '@angular/material/list';
 import { DocCellComponent } from './components/doc-cell/doc-cell.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { MydocsComponent } from './components/mydocs/mydocs.component';
 import { DocComponent } from './components/doc/doc.component';
+import { JwtInterceptor } from './interceptors/jwt-interceptor';
+import { ErrorInterceptor } from './interceptors/error-interceptors';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,10 @@ import { DocComponent } from './components/doc/doc.component';
     FormsModule
    
   ],
-  providers: [CookieService,MarkdownModule],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true},
+    CookieService,MarkdownModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

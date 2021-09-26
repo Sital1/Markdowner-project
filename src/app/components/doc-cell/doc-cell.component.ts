@@ -18,6 +18,12 @@ export class DocCellComponent implements OnInit {
 
   @Output()
   docDeleted:EventEmitter<string> = new EventEmitter<string>();
+
+
+  @Output()
+  availabilityChanged: EventEmitter<void> = new EventEmitter();
+
+
   constructor(private authenticationService:AuthenticationService,
     private docService:DocsService,
     private router:Router) { }
@@ -69,6 +75,31 @@ cellClicked(){
   }
 }
 
+
+cellStatusChanged(event:any){
+
+  const status = event.target.change;
+
+  const updatedAtTemp = this.doc.updatedAt;
+
+  this.doc.updatedAt = "";
+  this.doc.available=status;
+  this.docService.saveDoc(this.doc)
+  .subscribe(
+
+    data => {
+      this.doc=data;
+        this.availabilityChanged.emit();
+    },
+    error => {
+        this.doc.available=!status;
+        this.doc.updatedAt=updatedAtTemp;
+        alert(`Doc ${this.doc.id} was not saved: ${error.message}`)
+    }
+
+  )
+
+}
  
 
 
