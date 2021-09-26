@@ -1,8 +1,6 @@
-package com.markdown.auth.config.Security;
+package com.markdown.auth.config.security;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.json.JSONObject;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -34,14 +32,14 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         String tokenUnstripped = request.getHeader(AUTHORIZATION);
-        String token = StringUtils.removeStart(Optional.ofNullable(tokenUnstripped).orElse(""),"Bearer").trim();
+        String token = StringUtils.removeStart(Optional.ofNullable(tokenUnstripped).orElse(""), "Bearer").trim();
 
         Authentication authentication;
 
-        if(isEmpty(token)){
-            authentication = new UsernamePasswordAuthenticationToken("guest","");
-        }else{
-            authentication = new UsernamePasswordAuthenticationToken("user",token);
+        if (isEmpty(token)) {
+            authentication = new UsernamePasswordAuthenticationToken("guest", "");
+        } else {
+            authentication = new UsernamePasswordAuthenticationToken("user", token);
         }
 
         return getAuthenticationManager().authenticate(authentication);
@@ -52,7 +50,7 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         // if the authentication works we set the authentication on the context,  and we continue the chain of filter
         SecurityContextHolder.getContext().setAuthentication(authResult);
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 
     @Override
@@ -61,8 +59,8 @@ public class AuthFilter extends AbstractAuthenticationProcessingFilter {
         response.setStatus(SC_FORBIDDEN);
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("error",failed.getCause());
-        jsonObject.put("errorMessage",failed.getMessage());
+        jsonObject.put("error", failed.getCause());
+        jsonObject.put("errorMessage", failed.getMessage());
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().print(jsonObject);

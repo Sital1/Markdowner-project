@@ -1,4 +1,4 @@
-package com.markdown.auth.config.Security;
+package com.markdown.auth.config.security;
 
 /*
     Provides with user based on some info. User related to current spring config.
@@ -17,11 +17,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 
+@Component
 public class MarkdownAuthProvider  extends AbstractUserDetailsAuthenticationProvider {
 
     @Autowired

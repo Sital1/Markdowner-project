@@ -1,7 +1,7 @@
 package com.markdown.auth.config;
 
-import com.markdown.auth.config.Security.AuthFilter;
-import com.markdown.auth.config.Security.MarkdownAuthProvider;
+import com.markdown.auth.config.security.AuthFilter;
+import com.markdown.auth.config.security.MarkdownAuthProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

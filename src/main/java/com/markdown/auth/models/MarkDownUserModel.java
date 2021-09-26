@@ -28,6 +28,9 @@ public class MarkDownUserModel extends GenericModel{
     private String password;
     private List<String> roles;
 
+
+
+
     public MarkDownUserModel() {
         super();
     }
