@@ -16,7 +16,7 @@ build_phase:
   before_script:
     - npm ci
   script:
-    -ng build --prod --output-hashing=all
+    - ng build --prod --output-hashing=all
   cache:
     key: "SCI_COMMIT_REF_NAME"
     policy: push
@@ -31,7 +31,7 @@ test_phase:
   stage: test
   image: trion/ng-cli-karma:9.0.1
   script:
-    -ng test --progress false --watch false
+    - ng test --progress false --watch false
   cache:
     policy: pull
     key: "SCI_COMMIT_REF_NAME"
