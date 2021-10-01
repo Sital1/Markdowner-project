@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @EnableMongoAuditing
 @SpringBootApplication
-@EnableMongoRepositories
+//@EnableMongoRepositories
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AuthApplication {
 
