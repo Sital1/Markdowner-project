@@ -10,7 +10,7 @@ build_phase:
     SPRING_PROFILES_ACTIVE: "prod"
   stage: build
   script: ./gradlew --build-cache assemble --info
-  image: gradle:6.0-jdk11
+  image: gradle:7.2.0-jdk11
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -27,7 +27,7 @@ test_phase:
     SPRING_PROFILES_ACTIVE: "prod"
   stage: test
   script: ./gradlew test check --info
-  image: gradle:6.0-jdk11
+  image: gradle:7.2.0-jdk11
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
