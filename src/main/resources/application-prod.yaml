@@ -1,0 +1,9 @@
+server:
+  port: 9998
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://sitouls:Uranium12%40@markdowner.1tvtg.mongodb.net/test?retryWrites=true&w=majority
+      database: doc-prod
