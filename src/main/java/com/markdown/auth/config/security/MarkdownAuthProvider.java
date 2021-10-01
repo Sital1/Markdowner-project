@@ -23,7 +23,7 @@ import java.util.Optional;
 
 import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 
-@Component
+
 public class MarkdownAuthProvider  extends AbstractUserDetailsAuthenticationProvider {
 
     @Autowired
