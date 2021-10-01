@@ -4,6 +4,7 @@ import com.markdown.auth.config.security.AuthFilter;
 import com.markdown.auth.config.security.MarkdownAuthProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,8 +18,11 @@ import org.springframework.security.web.util.matcher.OrRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-   MarkdownAuthProvider markdownAuthProvider;
+    @Bean
+    MarkdownAuthProvider markdownAuthProvider(){
+
+        return new MarkdownAuthProvider();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -27,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // no need to create the session. JWT handles all the task.
                 .and()              // builder patter to chain the command
-                .authenticationProvider(markdownAuthProvider)
+                .authenticationProvider(markdownAuthProvider())
                 .addFilterBefore(authFilter(), AnonymousAuthenticationFilter.class) // custom filter to handle authentication
                 .authorizeRequests()
                 .anyRequest().authenticated() // every request is authenticated
@@ -35,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable()  // no need
                 .logout().disable()
                 .cors() ; // allows restricted resource to be requested
-
+                ///////
     }
 
     public AuthFilter authFilter() throws Exception {

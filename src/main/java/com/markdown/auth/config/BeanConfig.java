@@ -55,10 +55,6 @@ public class BeanConfig {
         return new CorsFilter(configSource);
     }
 
-    @Bean
-    MarkdownAuthProvider markdownAuthProvider(){
 
-        return new MarkdownAuthProvider();
-    }
 
 }
