@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated() // every request is authenticated
                 .and().csrf().disable()  // disable csrf since no track of cookies kept
                 .httpBasic().disable()  // no need
-                .logout().disable()
+                .logout().disable()////
                 .cors() ; // allows restricted resource to be requested
                 ///////
     }
