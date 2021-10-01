@@ -1,0 +1,38 @@
+stages:
+  - build
+  - test
+
+
+# BUILD_PHASE
+#=============
+build_phase:
+  variables:
+    SPRING_PROFILES_ACTIVE: "prod"
+  stage: build
+  script: ./gradlew --build-cache assemble --info
+  image: gradle:6.0-jdk11
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+  only:
+    - main
+
+# TEST_PHASE
+#=============
+test_phase:
+  variables:
+    SPRING_PROFILES_ACTIVE: "prod"
+  stage: test
+  script: ./gradlew test check --info
+  image: gradle:6.0-jdk11
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
+  only:
+    - main
