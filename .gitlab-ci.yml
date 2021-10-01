@@ -24,9 +24,8 @@ build_phase:
       - dist
       - node_modules
 
-
 # Test Phase
-# ==========
+# =========
 
 test_phase:
   stage: test
