@@ -43,22 +43,22 @@ public class InitializeProdData {
     void addRoles()
     {
         // delete all the data first
-       final Optional<MarkDownRoleModel> optionalMarkDownRoleModelAdmin = roleDAO.findByRole("ADMIN");
+       final Optional<MarkDownRoleModel> optionalMarkDownRoleModelAdmin = roleDAO.findByRole("admin");
 
 
         if(!optionalMarkDownRoleModelAdmin.isPresent())
         {
             MarkDownRoleModel markDownRoleModelAdmin = new MarkDownRoleModel();
-            markDownRoleModelAdmin.setRole("ADMIN");
+            markDownRoleModelAdmin.setRole("admin");
             roleDAO.save(markDownRoleModelAdmin);
         }
 
-       final Optional<MarkDownRoleModel> optionalMarkDownRoleModelUser = roleDAO.findByRole("ADMIN");
+       final Optional<MarkDownRoleModel> optionalMarkDownRoleModelUser = roleDAO.findByRole("user");
 
         if(!optionalMarkDownRoleModelUser.isPresent())
         {
             MarkDownRoleModel markDownRoleModelUser = new MarkDownRoleModel();
-            markDownRoleModelUser.setRole("USER");
+            markDownRoleModelUser.setRole("user");
             roleDAO.save(markDownRoleModelUser);
         }
     }
@@ -74,7 +74,7 @@ public class InitializeProdData {
            MarkDownUserModel markDownUserModelAdmin = new MarkDownUserModel();
            markDownUserModelAdmin.setUsername("admin");
            markDownUserModelAdmin.setEmail("admin@admin.com");
-           markDownUserModelAdmin.setPassword(bCryptPasswordEncoder.encode("123sfasdasd"));
+           markDownUserModelAdmin.setPassword(bCryptPasswordEncoder.encode("Abc12345"));
            markDownUserModelAdmin.setRoles(Collections.singletonList("ADMIN"));
            tokenService.generateToken(markDownUserModelAdmin);
            markDownUserModelAdmin.setDisplayName("adminDisplayName");
@@ -84,14 +84,14 @@ public class InitializeProdData {
 
 
 
-        final Optional<MarkDownUserModel> optionalMarkDownUserModelUser = userDAO.findByUsername("admin");
+        final Optional<MarkDownUserModel> optionalMarkDownUserModelUser = userDAO.findByUsername("user");
 
         if (!optionalMarkDownUserModelUser.isPresent())
         {
             MarkDownUserModel markDownUserModelUser = new MarkDownUserModel();
             markDownUserModelUser.setUsername("user");
             markDownUserModelUser.setEmail("user@user.com");
-            markDownUserModelUser.setPassword(bCryptPasswordEncoder.encode("123sfasdasd"));
+            markDownUserModelUser.setPassword(bCryptPasswordEncoder.encode("Abc12345"));
             markDownUserModelUser.setRoles(Collections.singletonList("USER"));
             tokenService.generateToken(markDownUserModelUser);
             markDownUserModelUser.setDisplayName("userDisplayName");

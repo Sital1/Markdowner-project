@@ -1,0 +1,17 @@
+
+server:
+  port: 9999
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://sitouls:Uranium12%40@markdowner.1tvtg.mongodb.net/test?retryWrites=true&w=majority
+      database: auth-prod
+
+jwt:
+  secret:
+    key: RWHxVfglggk2ZHBIJSl/RoJmkW3olz/rkBce6oEne38/JCzqRqLO5fD1TUFSxP4Ar4/EzCEtuM4SD4Okccco4C==
+
+
+
+
