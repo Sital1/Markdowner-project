@@ -9,8 +9,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.stereotype.Component;
 
 @EnableMongoAuditing
-@SpringBootApplication(scanBasePackages = "com.markdown.auth")
-@EnableMongoRepositories(basePackages = {"com.markdown.auth"})
+@SpringBootApplication
+@EnableMongoRepositories
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AuthApplication {
 
