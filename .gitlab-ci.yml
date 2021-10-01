@@ -27,7 +27,7 @@ test_phase:
     SPRING_PROFILES_ACTIVE: "prod"
   stage: test
   script: ./gradlew test check --info
-  image: gradle:6.0-jdk13
+  image: gradle:6.0-jdk11
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
