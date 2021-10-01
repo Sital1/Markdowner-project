@@ -95,6 +95,10 @@ public class DocServiceImpl implements DocService {
     @Override
     public void updateDoc(DocDTO docDTO, String userId) throws UserNotAllowedException {
 
+        checkNotNull(docDTO.getContent());
+        checkNotNull(docDTO.getTitle());
+        checkNotNull(docDTO.getUserId());
+
         Optional<DocModel> optionalDocModel = docDAO.findById(docDTO.getId());
 
         if (optionalDocModel.isPresent()){
