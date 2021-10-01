@@ -1,7 +1,4 @@
 
-server:
-  port: 9999
-
 spring:
   data:
     mongodb:
