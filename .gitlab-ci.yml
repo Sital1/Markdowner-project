@@ -36,3 +36,21 @@ test_phase:
       - .gradle
   only:
     - main
+
+# PUBLISH_PHASE
+#=============
+publish_phase:
+  before_script:
+    - echo $DOCKER_REPO_PASSWORD | docker login --username $DOCKER_REPO_USERNAME --password-stdin
+  stage:  publish
+  image:  docker:git
+  services:
+    - docker:20.10.9-dind
+  script:
+    - docker build -t $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:auth .
+    - docker push $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:auth
+  cache:
+    policy: pull
+    key:  "$CI_COMMIT_REF_NAME"
+    paths:
+      - build
