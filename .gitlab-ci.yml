@@ -18,7 +18,7 @@ build_phase:
   script:
     - ng build --prod --output-hashing=all
   cache:
-    key: "SCI_COMMIT_REF_NAME"
+    key: "$CI_COMMIT_REF_NAME"
     policy: push
     paths:
       - dist
@@ -34,7 +34,28 @@ test_phase:
     - ng test --progress false --watch false
   cache:
     policy: pull
-    key: "SCI_COMMIT_REF_NAME"
+    key: "$CI_COMMIT_REF_NAME"
     paths:
       - dist
       - node_modules
+
+
+# Publish  Phase
+# =========
+
+publish phase:
+  before_script:
+    - echo $DOCKER_REPO_PASSWORD | docker login --username $DOCKER_REPO_USERNAME --password-stdin
+  stage:  publish
+  image:  docker:git
+  services:
+    - docker:20.10.9-dind
+  script:
+    - docker build -t $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:frontend .
+    - docker push $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:frontend
+  cache:
+    policy: pull
+    key:  "$CI_COMMIT_REF_NAME"
+    paths:
+      - dist
+  
