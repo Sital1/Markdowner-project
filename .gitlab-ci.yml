@@ -49,7 +49,7 @@ publish_phase:
   services:
     - docker:dind
   script:
-    - docker build -t $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:auth .
+    - docker build --platform linux/amd64 -t sital12/markdowner:auth .
     - docker push $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:auth
   cache:
     policy: pull
