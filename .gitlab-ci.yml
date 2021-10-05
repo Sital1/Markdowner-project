@@ -47,7 +47,7 @@ publish_phase:
     - echo $DOCKER_REPO_PASSWORD | docker login --username $DOCKER_REPO_USERNAME --password-stdin
   image:  docker:git
   services:
-    - docker:20.10.9-dind
+    - docker:20.10.9-dind-alpine3.14
   script:
     - docker build -t $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:auth .
     - docker push $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:auth
