@@ -40,7 +40,7 @@ test_phase:
     - main
 
 # PUBLISH_PHASE
-#==============
+#===============
 publish_phase:
   stage:  publish
   before_script:
