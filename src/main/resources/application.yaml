@@ -12,3 +12,8 @@ jwt:
   secret:
     key: pFtzHkzwMZWguXpY9XfN0ikS0w7BVgDs7azZaRA+R3b4QWqIBdvkVNzoGSG5dJU/FJ3dIhttfunvh7IY3RhP/Q==
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

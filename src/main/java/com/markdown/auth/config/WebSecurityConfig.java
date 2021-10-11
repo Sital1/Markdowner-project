@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationProvider(markdownAuthProvider())
                 .addFilterBefore(authFilter(), AnonymousAuthenticationFilter.class) // custom filter to handle authentication
                 .authorizeRequests()
+                .antMatchers("/actuator/health").permitAll()
                 .anyRequest().authenticated() // every request is authenticated
                 .and().csrf().disable()  // disable csrf since no track of cookies kept
                 .httpBasic().disable()  // no need
