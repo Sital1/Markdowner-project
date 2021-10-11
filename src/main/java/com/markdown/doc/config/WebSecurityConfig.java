@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationProvider(docAuthProvider)
                 .addFilterBefore(docAuthFilter(), AnonymousAuthenticationFilter.class)
                 .authorizeRequests()
+                .antMatchers("/actuator/health").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
