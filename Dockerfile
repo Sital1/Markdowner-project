@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:latest
 
 # Removes the current directory to serve
 RUN rm -f /usr/share/nginx/html/*
@@ -13,4 +13,4 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 
 # Hold the docker image running
-CMD ["nginx","-g","dameon off;"]
+CMD ["nginx","-g","dameon on;"]
