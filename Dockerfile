@@ -13,4 +13,4 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 
 # Hold the docker image running
-CMD ["nginx","-g","dameon on;"]
+CMD ["nginx","-g","daemon off;"]
