@@ -35,6 +35,9 @@ public class TokenController {
         if (!isEmpty(header))
         {
            token = header.split("\\s")[1];
+        }else
+        {
+            return;
         }
 
         tokenService.validateToken(token);
