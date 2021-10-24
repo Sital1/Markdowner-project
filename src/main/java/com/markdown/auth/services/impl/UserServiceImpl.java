@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 
 
 
-        System.out.println(">>>IN user Service After saving markdown model and mapping to DTO: "+ userInfoDTO.getRoles() );
+        System.out.println(">>>IN user Service After saving markdown model and ma pping to DTO: "+ userInfoDTO.getRoles() );
 
     }
 
