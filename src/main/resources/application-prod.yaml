@@ -6,7 +6,7 @@ jasypt:
   encryptor:
     algorithm: PBEWithMD5AndDES
     iv-generator-classname: org.jasypt.iv.NoIvGenerator
-    password: {bcrypt}$2a$10$jt1jtjqS7g.FKpokupSzu.uHYTNtqTszFP6JHC/q9foNa.V2pu74K
+    password: ${password}
 
 
 # database
