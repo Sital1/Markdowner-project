@@ -1,6 +1,12 @@
 server:
   port: 9998
 
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
 # database
 
 spring:
