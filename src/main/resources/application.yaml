@@ -1,3 +1,8 @@
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
 
 server:
   port: 9999
@@ -10,7 +15,7 @@ spring:
 
 jwt:
   secret:
-    key: pFtzHkzwMZWguXpY9XfN0ikS0w7BVgDs7azZaRA+R3b4QWqIBdvkVNzoGSG5dJU/FJ3dIhttfunvh7IY3RhP/Q==
+    key: ENC(2XDppU9hUY8iskc89d1GFBfVfVVo2QWXOAi+IKGXfb2F/Ty9nC+eG5dvztpcF/j9yZehJsiFqUDKs/lmVWuqwpU1oBB9KJifBJjAs0eMm8m68BeaoZOyIGyCkyfMF8nzcsbCAJhxlTs=)
 
 management:
   endpoints:

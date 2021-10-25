@@ -56,3 +56,18 @@ publish_phase:
     key:  "$CI_COMMIT_REF_NAME"
     paths:
       - build
+
+# Deploy Phase
+#==============
+deploy_assets:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  script:
+    - echo $GCP_CREDENTIALS > /tmp/gcp_credentials.json
+    - gcloud auth activate-service-account --key-file /tmp/gcp_credentials.json
+    - gcloud config set project markdowner
+    - gcloud container clusters get-credentials markdowner-cluster --region us-central1-a --project markdowner
+    - kubectl patch deployment auth-app-deployment -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+  only:
+    - main
+

@@ -3,14 +3,14 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://sitouls:Uranium12%40@markdowner.1tvtg.mongodb.net/test?retryWrites=true&w=majority
+
+      uri: ENC(dWK+dyOU29XcrM2QXapzXMKcp6WeBdRPlT8PmIL0kkHqj3G4FccDujIE1YMqAPhUMc1kMaOGcqMtyDxubPWJ019d2npAcndEsJjTC3+mqWgkR+94/ASCXICGWtUJPkrvqDrup3i89W1dwosKvKLpSg==)
       database: auth-prod
 
 #JWT
 jwt:
   secret:
-    key: RWHxVfglggk2ZHBIJSl/RoJmkW3olz/rkBce6oEne38/JCzqRqLO5fD1TUFSxP4Ar4/EzCEtuM4SD4Okccco4C==
-
+    key: ENC(Dga5lOYuNtN/RCOTlZqkzyqQ26L/d4y/hoGp6OLOCqDIjdreMfsAev+rztyhdGnyDQTY+PRpp2QuDzFqipBlXModmErhQjxP7h10R4WFmeiBayrGNNnPA7bbRFcZLk8sdKnrVS9zFTI=)
 
 
 

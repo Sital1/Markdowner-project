@@ -3,6 +3,9 @@ package com.markdown.auth.config;
 import com.markdown.auth.config.security.MarkdownAuthProvider;
 import com.markdown.auth.dtos.UserInfoDTO;
 import com.markdown.auth.models.MarkDownUserModel;
+import org.jasypt.encryption.StringEncryptor;
+import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
+import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +58,24 @@ public class BeanConfig {
         return new CorsFilter(configSource);
     }
 
+
+//    @Bean(name = "jasyptStringEncryptor")
+//    public StringEncryptor passwordEncryptor(){
+//        PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+//
+//        SimpleStringPBEConfig config = new SimpleStringPBEConfig();
+//
+//        config.setAlgorithm("PBEWITHHMACSHA512ANDAES_256");
+//        config.setKeyObtentionIterations("1000");
+//        config.setPoolSize("1");
+//        config.setProviderName("SunJCE");
+//        config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
+//        config.setStringOutputType("base64");
+//        encryptor.setConfig(config);
+//
+//
+//        return encryptor;
+//    }
 
 
 }
