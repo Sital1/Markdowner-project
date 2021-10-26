@@ -50,6 +50,7 @@ publish_phase:
   services:
     - docker:dind
   script:
+    - ENV password=$password
     - docker build -t $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:doc .
     - docker push $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:doc
   cache:
