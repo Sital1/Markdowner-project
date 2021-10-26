@@ -67,7 +67,7 @@ deploy_assets:
     - echo $GCP_CREDENTIALS > /tmp/gcp_credentials.json
     - gcloud auth activate-service-account --key-file /tmp/gcp_credentials.json
     - gcloud config set project markdowner
-    - gcloud container clusters get-credentials markdown-cluster --region us-central1-a --project markdowner
+    - gcloud container clusters get-credentials  markdowner-cluster --region us-central1-a --project markdowner
     - kubectl patch deployment doc-app-deployment -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
   only:
     - main
