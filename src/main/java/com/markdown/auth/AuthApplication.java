@@ -18,11 +18,11 @@ import org.springframework.stereotype.Component;
 
 public class AuthApplication {
 
-    private static Environment env;
+//    private static Environment env;
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class, args);
 
-        System.out.println(env.getProperty("password"));
+//        System.out.println(env.getProperty("password"));
 
 
     }
