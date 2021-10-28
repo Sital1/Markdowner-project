@@ -49,7 +49,7 @@ public class InitializeProdData {
         if(!optionalMarkDownRoleModelAdmin.isPresent())
         {
             MarkDownRoleModel markDownRoleModelAdmin = new MarkDownRoleModel();
-            markDownRoleModelAdmin.setRole("admin");
+            markDownRoleModelAdmin.setRole("ADMIN");
             roleDAO.save(markDownRoleModelAdmin);
         }
 
@@ -58,7 +58,7 @@ public class InitializeProdData {
         if(!optionalMarkDownRoleModelUser.isPresent())
         {
             MarkDownRoleModel markDownRoleModelUser = new MarkDownRoleModel();
-            markDownRoleModelUser.setRole("user");
+            markDownRoleModelUser.setRole("USER");
             roleDAO.save(markDownRoleModelUser);
         }
     }
