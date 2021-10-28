@@ -43,7 +43,7 @@ public class InitializeProdData {
     void addRoles()
     {
         // delete all the data first
-       final Optional<MarkDownRoleModel> optionalMarkDownRoleModelAdmin = roleDAO.findByRole("admin");
+       final Optional<MarkDownRoleModel> optionalMarkDownRoleModelAdmin = roleDAO.findByRole("ADMIN");
 
 
         if(!optionalMarkDownRoleModelAdmin.isPresent())
@@ -53,7 +53,7 @@ public class InitializeProdData {
             roleDAO.save(markDownRoleModelAdmin);
         }
 
-       final Optional<MarkDownRoleModel> optionalMarkDownRoleModelUser = roleDAO.findByRole("user");
+       final Optional<MarkDownRoleModel> optionalMarkDownRoleModelUser = roleDAO.findByRole("USER");
 
         if(!optionalMarkDownRoleModelUser.isPresent())
         {
