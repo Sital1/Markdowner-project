@@ -28,11 +28,11 @@ public class UserController {
         // check for nullpointer exceptions
         checkNotNull(userInfoDTO);
 
-        System.out.println(">>>IN user controller the DTO we received: "+ userInfoDTO.getRoles() );
+
 
         userService.createUser(userInfoDTO);
 
-        System.out.println(">>>IN user controller the DTO we are returning: "+ userInfoDTO.getRoles() );
+
 
         return userInfoDTO;
     }
