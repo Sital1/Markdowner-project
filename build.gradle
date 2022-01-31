@@ -8,13 +8,13 @@ group = 'com.markdown'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-//jar {
-//    manifest {
-//        attributes (
-//                'Main-Class': 'build.classes.java.main.com/markdown/auth/AuthApplication.class'
-//        )
-//    }
-//}
+jar {
+    manifest {
+        attributes (
+                'Main-Class': 'com.markdown.auth.AuthApplication.class'
+        )
+    }
+}
 
 configurations {
     compileOnly {
