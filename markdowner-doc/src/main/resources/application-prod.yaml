@@ -1,0 +1,18 @@
+server:
+  port: 9998
+
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    password: ${password}
+
+
+# database
+
+spring:
+  data:
+    mongodb:
+      uri: ENC(+rwKqqZAVNi1GBG/mmWIzwpBokNKa0FBTjAxiKhogF0gUgs5AMPaeac8/F+VIYHMKaKSdtZAz7SE2geEmF8NwZzhKGgqftgUrg+VNjbQtyWobt0/f5508cyzpz9rEegqOOdMD54HguAWSuEcwHZ7Vw==)
+      database: doc-prod

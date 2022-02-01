@@ -1,0 +1,21 @@
+server:
+  port: 9998
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    password: ${password}
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: ENC(qw4udVtkdO6ULBr7B43/mcdV6Hz9pri4)
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
