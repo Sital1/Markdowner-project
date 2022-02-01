@@ -1,0 +1,25 @@
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    password: ${password}
+
+
+server:
+  port: 9999
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: auth-demo
+
+jwt:
+  secret:
+    key: ENC(2XDppU9hUY8iskc89d1GFBfVfVVo2QWXOAi+IKGXfb2F/Ty9nC+eG5dvztpcF/j9yZehJsiFqUDKs/lmVWuqwpU1oBB9KJifBJjAs0eMm8m68BeaoZOyIGyCkyfMF8nzcsbCAJhxlTs=)
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

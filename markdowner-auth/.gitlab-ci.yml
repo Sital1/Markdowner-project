@@ -1,0 +1,74 @@
+stages:
+  - build
+  - test
+  - publish
+  - deploy
+
+
+
+# BUILD_PHASE
+#================
+build_phase:
+  variables:
+    SPRING_PROFILES_ACTIVE: "prod"
+  stage: build
+  script: ./gradlew --build-cache assemble --info
+  image: gradle:7.2.0-jdk11
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+  only:
+    - main
+
+# TEST_PHASE
+#=============
+test_phase:
+  variables:
+    SPRING_PROFILES_ACTIVE: "prod"
+  stage: test
+  script: ./gradlew test check --info
+  image: gradle:7.2.0-jdk11
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
+  only:
+    - main
+
+# PUBLISH_PHASE
+#================
+publish_phase:
+  stage:  publish
+  before_script:
+    - echo $DOCKER_REPO_PASSWORD | docker login --username $DOCKER_REPO_USERNAME --password-stdin
+  image:  docker:git
+  services:
+    - docker:dind
+  script:
+    - docker build --platform linux/amd64 -t sital12/markdowner:auth .
+    - docker push $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:auth
+  cache:
+    policy: pull
+    key:  "$CI_COMMIT_REF_NAME"
+    paths:
+      - build
+
+# Deploy Phase
+#==============
+deploy_assets:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  script:
+    - echo $GCP_CREDENTIALS > /tmp/gcp_credentials.json
+    - gcloud auth activate-service-account --key-file /tmp/gcp_credentials.json
+    - gcloud config set project markdowner
+    - gcloud container clusters get-credentials markdowner-cluster --region us-central1-a --project markdowner
+    - kubectl patch deployment auth-app-deployment -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+  only:
+    - main
+
