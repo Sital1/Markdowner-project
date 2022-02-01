@@ -1,0 +1,76 @@
+stages:
+  - build
+  - test
+  - publish
+  - deploy
+
+# Angular CLI image
+
+
+
+# Build Phase
+# What commands are executed in container
+#==============
+
+build_phase:
+  stage: build
+  image: trion/ng-cli
+  before_script:
+    - npm ci
+  script:
+    - ng build --prod --output-hashing=all
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - dist
+      - node_modules
+
+# Test Phase
+# =========
+
+test_phase:
+  stage: test
+  image: trion/ng-cli-karma:9.0.1
+  script:
+    - ng test --progress false --watch false
+  cache:
+    policy: pull
+    key: "$CI_COMMIT_REF_NAME"
+    paths:
+      - dist
+      - node_modules
+
+
+# Publish  Phase
+# ===========
+
+publish_phase:
+  stage:  publish
+  before_script:
+    - echo $DOCKER_REPO_PASSWORD | docker login --username $DOCKER_REPO_USERNAME --password-stdin
+  image:  docker:git
+  services:
+    - docker:dind
+  script:
+    - docker build -t $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:frontend .
+    - docker push $DOCKER_REPO_USERNAME/$DOCKER_REPO_NAME:frontend
+  cache:
+    policy: pull
+    key:  "$CI_COMMIT_REF_NAME"
+    paths:
+      - dist
+
+# Deploy Phase
+#==============+==
+deploy_assets:
+    stage: deploy
+    image: google/cloud-sdk:latest
+    script:
+      - echo $GCP_CREDENTIALS > /tmp/gcp_credentials.json
+      - gcloud auth activate-service-account --key-file /tmp/gcp_credentials.json
+      - gcloud config set project markdowner
+      - gcloud container clusters get-credentials markdowner-cluster --region us-central1-a --project markdowner
+      - kubectl patch deployment frontend-app-deployment -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+    only:
+      - main

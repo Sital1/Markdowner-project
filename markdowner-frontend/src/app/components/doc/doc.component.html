@@ -1,0 +1,21 @@
+<div class="doc-title-container">
+    <input type="text" [(ngModel)]="docTitle">
+</div>
+    
+
+<div class="doc-container">
+
+    <div class="text-container">
+       <textarea class="input-md-text" [(ngModel)]="content"></textarea>
+    </div>
+    <div class="markdown-container">
+
+    <markdown [data]="content" (load)="loadSuccessful($event)" (error)="onError($event)">
+
+    </markdown>
+
+    </div>
+
+    <button class="btn btn-success save-button" (click)="saveDoc()">SAVE</button>
+
+</div>
